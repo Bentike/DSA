@@ -24,6 +24,8 @@
 //     }
 // }
 
+// SINGLY LINKED LIST --->
+
 class LinkedList {
     constructor(value){
         this.head = {
@@ -134,4 +136,125 @@ firstLinkedList.remove(3);
 firstLinkedList.remove(3);
 // firstLinkedList.remove(3);
 // firstLinkedList.remove(4);
-console.log(firstLinkedList.printList());
+// console.log(firstLinkedList.printList());
+
+
+
+
+
+// DOUBLY LINKED LISTS
+// DOUBLY LINKED LISTS HAS A POINTER THAT POINTS TO THE PREVOIUS NODE.
+class doublyLinkedList {
+    constructor(value){
+        this.head = {
+            value: 10,
+            next : null,
+            prev: null
+        }
+        this.tail = this.head;
+        this.length = 1;
+    }
+
+    append(value){
+        const newNode = {
+            value,
+            next: null,
+            prev: null
+        }
+        newNode.prev = this.tail;
+        this.tail.next = newNode;
+        this.tail = newNode;
+        this.length++;
+        return this;
+    }
+
+    prepend(value){
+        const newNode = {
+            value,
+            next: this.head
+        }
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
+
+    // Another way to write the prepend Method
+
+    anotherPrepend(value){
+        const newNode = {
+            value,
+            next: null,
+            prev: null
+        }
+        newNode.next = this.head;
+        this.head.prev = newNode;
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
+
+    // Method to print the values of all items in a Linkelist
+    printList(){
+        let myList = [];
+        let currentNode = this.head;
+        while(currentNode !== null){
+            myList.push(currentNode.value);
+            currentNode = currentNode.next;
+        }
+        return myList;
+    }
+
+    // METHOD TO INSERT ITEMS TO ANY INDEX IN A LINKED LISTS
+
+    insert(index, value){
+
+        if(index >= this.length){
+            return this.append(value);
+        }
+
+        const newNode = {
+            value,
+            next: null,
+            prev: null
+        }
+
+        const leader = this.traverseToIndex(index - 1);
+        const follower = leader.next;
+        leader.next = newNode;
+        newNode.next = follower;
+        newNode.prev = leader;
+        follower.prev = newNode;
+        this.length++;
+        return this.printList();
+       
+    }
+
+    traverseToIndex(index){
+        let count = 0;
+        let currentNode = this.head;
+        while(count !== index){
+            currentNode = currentNode.next;
+            count++;
+        }
+        return currentNode;
+    }
+
+    // METHOD TO REMOVE AN ITEM FROM ANYWHERE IN A LINKED LIST
+    remove(index){
+        let pointer = this.traverseToIndex(index - 1);
+        let unwantedItem = pointer.next;
+        let nextItem = unwantedItem.next;
+        pointer.next = nextItem;
+        this.lenght--;
+        return this.printList();
+    }
+
+}
+
+let myDoubly = new doublyLinkedList(50);
+myDoubly.append(40)
+myDoubly.anotherPrepend(30)
+myDoubly.anotherPrepend(70)
+myDoubly.insert(1, 60);
+myDoubly.insert(3, 100);
+console.log(myDoubly.printList());
