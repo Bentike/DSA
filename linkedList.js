@@ -82,16 +82,23 @@ class LinkedList {
     // METHOD TO INSERT ITEMS TO ANY INDEX IN A LINKED LISTS
 
     insert(index, value){
+
+        if(index >= this.length){
+            return this.append(value);
+        }
+
         const newNode = {
             value,
             next: null
         }
 
-        for(let i = 0; i < this.length; i++){
-            if(i === index){
-
-            }
-        }
+        const leader = this.traverseToIndex(index - 1);
+        const nextPointer = leader.next;
+        leader.next = newNode;
+        newNode.next = nextPointer;
+        this.length++;
+        return this.printList();
+       
     }
 
     traverseToIndex(index){
@@ -107,14 +114,10 @@ class LinkedList {
 }
 
 const firstLinkedList = new LinkedList(10);
-firstLinkedList.append(5);
-firstLinkedList.prepend(15);
-firstLinkedList.prepend(25);
-firstLinkedList.append(95);
-firstLinkedList.anotherPrepend(22)
-firstLinkedList.anotherPrepend(33)
-firstLinkedList.append(47)
-firstLinkedList.prepend(38)
-firstLinkedList.append(16);
-firstLinkedList.append(30);
+firstLinkedList.append(30)
+firstLinkedList.prepend(60)
+firstLinkedList.insert(2, 20);
+firstLinkedList.insert(1, 50);
+firstLinkedList.insert(2, 40);
+firstLinkedList.insert(70, 100);
 console.log(firstLinkedList.printList());
