@@ -111,6 +111,15 @@ class LinkedList {
         return currentNode;
     }
 
+    // METHOD TO REMOVE AN ITEM FROM ANYWHERE IN A LINKED LIST
+    remove(index){
+        let pointer = this.traverseToIndex(index - 1);
+        let nextItem = this.traverseToIndex(index + 1);
+        pointer.next = nextItem;
+        this.lenght--;
+        return this.printList();
+    }
+
 }
 
 const firstLinkedList = new LinkedList(10);
@@ -120,4 +129,7 @@ firstLinkedList.insert(2, 20);
 firstLinkedList.insert(1, 50);
 firstLinkedList.insert(2, 40);
 firstLinkedList.insert(70, 100);
+firstLinkedList.remove(3);
+firstLinkedList.remove(3);
+firstLinkedList.remove(4);
 console.log(firstLinkedList.printList());
