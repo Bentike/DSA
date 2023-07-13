@@ -114,7 +114,8 @@ class LinkedList {
     // METHOD TO REMOVE AN ITEM FROM ANYWHERE IN A LINKED LIST
     remove(index){
         let pointer = this.traverseToIndex(index - 1);
-        let nextItem = this.traverseToIndex(index + 1);
+        let unwantedItem = pointer.next;
+        let nextItem = unwantedItem.next;
         pointer.next = nextItem;
         this.lenght--;
         return this.printList();
@@ -131,5 +132,6 @@ firstLinkedList.insert(2, 40);
 firstLinkedList.insert(70, 100);
 firstLinkedList.remove(3);
 firstLinkedList.remove(3);
-firstLinkedList.remove(4);
+// firstLinkedList.remove(3);
+// firstLinkedList.remove(4);
 console.log(firstLinkedList.printList());
