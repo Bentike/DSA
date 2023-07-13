@@ -79,6 +79,31 @@ class LinkedList {
         return myList;
     }
 
+    // METHOD TO INSERT ITEMS TO ANY INDEX IN A LINKED LISTS
+
+    insert(index, value){
+        const newNode = {
+            value,
+            next: null
+        }
+
+        for(let i = 0; i < this.length; i++){
+            if(i === index){
+
+            }
+        }
+    }
+
+    traverseToIndex(index){
+        let count = 0;
+        let currentNode = this.head;
+        while(count !== index){
+            currentNode = currentNode.next;
+            count++;
+        }
+        return currentNode;
+    }
+
 }
 
 const firstLinkedList = new LinkedList(10);
