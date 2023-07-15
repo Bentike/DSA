@@ -29,7 +29,7 @@
 class LinkedList {
     constructor(value){
         this.head = {
-            value: 10,
+            value,
             next : null
         }
         this.tail = this.head;
@@ -123,6 +123,24 @@ class LinkedList {
         return this.printList();
     }
 
+    // METHOD TO REVERSE A SINGLY LINKED LISTS
+    reverseList(){
+       if(!this.head.next){
+          return this.head;
+       }
+       let first = this.head;
+       this.tail = this.head;
+       let second = first.next;
+       while(second){
+         let temp = second.next;
+         second.next = first;
+         first = second;
+         second = temp;
+       }
+       this.head.next = null;
+       this.head = first;
+       return this;
+    }
 }
 
 const firstLinkedList = new LinkedList(10);
@@ -134,8 +152,11 @@ firstLinkedList.insert(2, 40);
 firstLinkedList.insert(70, 100);
 firstLinkedList.remove(3);
 firstLinkedList.remove(3);
+console.log(firstLinkedList.reverseList());
+// console.log(firstLinkedList.printList());
 // firstLinkedList.remove(3);
 // firstLinkedList.remove(4);
+// console.log(firstLinkedList.reverseList());
 // console.log(firstLinkedList.printList());
 
 
@@ -251,10 +272,10 @@ class doublyLinkedList {
 
 }
 
-let myDoubly = new doublyLinkedList(50);
-myDoubly.append(40)
-myDoubly.anotherPrepend(30)
-myDoubly.anotherPrepend(70)
-myDoubly.insert(1, 60);
-myDoubly.insert(3, 100);
-console.log(myDoubly.printList());
+// let myDoubly = new doublyLinkedList(50);
+// myDoubly.append(40)
+// myDoubly.anotherPrepend(30)
+// myDoubly.anotherPrepend(70)
+// myDoubly.insert(1, 60);
+// myDoubly.insert(3, 100);
+// console.log(myDoubly.printList());
