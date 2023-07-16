@@ -18,7 +18,17 @@ class Stack {
     }
 
     push(value){
-
+        const newNode = new Node(value);
+        if(this.length === 0){
+            this.top = newNode;
+            this.bottom = newNode;
+        }else{
+            const holdingPoint = this.top;
+            this.top = newNode;
+            this.top.next = holdingPoint;
+        }
+        this.length++;
+        return this;
     }
 
     pop(){
@@ -27,4 +37,4 @@ class Stack {
 }
 
 const myStack = new Stack();
-console.log(myStack.peek());
+// console.log(myStack.peek());
